@@ -4,7 +4,7 @@
 set number
 
 " Change colorscheme
-//colorscheme pablo
+"colorscheme pablo
 colorscheme nnul
 
 " Turns on the tab bar always
