@@ -1,0 +1,19 @@
+[color]
+	ui = auto
+[user]
+	name = John Doe
+	email = jdoe@email.xxx
+[core]
+	excludesfile = /Users/keith/.gitignore
+[push]
+	default = upstream
+[diff]
+	tool = kdiff3
+[difftool "kdiff3"]
+	path = /usr/local/bin/kdiff3
+[difftool "echo"]
+	cmd = echo $LOCAL $REMOTE	
+[merge]
+	tool = kdiff3
+[mergetool "kdiff3"]
+	path = /usr/local/bin/kdiff3

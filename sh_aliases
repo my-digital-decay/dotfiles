@@ -1,0 +1,14 @@
+# ~/.bash_aliases
+
+alias ls='ls -G'
+alias ll='ls -lh'
+alias la='ls -a'
+
+alias ..='cd ..'
+#alias .='pwd'
+
+alias h='history'
+alias home='cd ~'
+
+alias grep='grep --color=auto -s'
+
