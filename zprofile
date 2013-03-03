@@ -1,2 +1,3 @@
 # ~/.zprofile
-#
+echo .zprofile
+

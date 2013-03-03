@@ -1,12 +1,13 @@
 #
-# files to ignore in git
+# files to globally ignore in git
 #
 
 # mac files
 .DS_Store
 
-# ignore subversion folders
+# ignore other version control folders folders
 .svn
+.cvs
 
 # ignore vim backup files
 *~
@@ -16,3 +17,4 @@
 # ctags
 tags
 TAGS
+
