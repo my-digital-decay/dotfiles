@@ -1,6 +1,8 @@
 # bash/zsh git prompt support
 #
 # Copyright (C) 2006,2007 Shawn O. Pearce <spearce@spearce.org>
+# Modifications Copyright (c) 2013 Keith W. Thompson
+#								   <my.digital.decay@gmail.com>
 # Distributed under the GNU General Public License, version 2.0.
 #
 # This script allows you to see the current branch in your prompt.
@@ -75,6 +77,12 @@
 # If you would like a colored hint about the current dirty state, set
 # GIT_PS1_SHOWCOLORHINTS to a nonempty value. The colors are based on
 # the colored output of "git status -sb".
+#
+# prompt settings:
+# GIT_PS1_PREFIX="("
+# GIT_PS1_SUFFIX=")"
+# GIT_PS1_DIRTY="*"
+# GIT_PS1_CLEAN=""
 
 # __gitdir accepts 0 or 1 arguments (i.e., location)
 # returns location of .git repo
@@ -233,16 +241,28 @@ __git_ps1_show_upstream ()
 # In this mode you can request colored hints using GIT_PS1_SHOWCOLORHINTS=true
 __git_ps1 ()
 {
-	local pcmode=no
+	local zsh=no
 	local detached=no
-	local ps1pc_start='\u@\h:\w '
-	local ps1pc_end='\$ '
-	local printf_format=' (%s)'
+	local printf_format='(%s)'
+
+	if [ -n "$GIT_PS1_PREFIX" ] || [ -n "$GIT_PS1_SUFFIX" ]; then
+		printf_format="$GIT_PS1_PREFIX%s$GIT_PS1_SUFFIX"
+	fi
+
+	# prompt mode
+	local pmode=no
+	local pstart='\u@\h:\w '
+	local pend='$ '
+
+	if [ -n $ZSH_NAME ]; then
+		zsh=yes
+		pstart='%n@%m: %~ '
+	fi
 
 	case "$#" in
-		2|3)	pcmode=yes
-			ps1pc_start="$1"
-			ps1pc_end="$2"
+		2|3)	pmode=yes
+			pstart="$1"
+			pend="$2"
 			printf_format="${3:-$printf_format}"
 		;;
 		0|1)	printf_format="${1:-$printf_format}"
@@ -253,9 +273,8 @@ __git_ps1 ()
 
 	local g="$(__gitdir)"
 	if [ -z "$g" ]; then
-		if [ $pcmode = yes ]; then
-			#In PC mode PS1 always needs to be set
-			PS1="$ps1pc_start$ps1pc_end"
+		if [ $pmode = yes ]; then
+			echo "$pstart$pend"
 		fi
 	else
 		local r=""
@@ -343,53 +362,68 @@ __git_ps1 ()
 		fi
 
 		local f="$w$i$s$u"
-		if [ $pcmode = yes ]; then
-			local gitstring=
-			if [ -n "${GIT_PS1_SHOWCOLORHINTS-}" ]; then
-				local c_red='\e[31m'
-				local c_green='\e[32m'
-				local c_lblue='\e[1;34m'
-				local c_clear='\e[0m'
-				local bad_color=$c_red
-				local ok_color=$c_green
-				local branch_color="$c_clear"
-				local flags_color="$c_lblue"
-				local branchstring="$c${b##refs/heads/}"
-
-				if [ $detached = no ]; then
-					branch_color="$ok_color"
-				else
-					branch_color="$bad_color"
-				fi
-
-				# Setting gitstring directly with \[ and \] around colors
-				# is necessary to prevent wrapping issues!
-				gitstring="\[$branch_color\]$branchstring\[$c_clear\]"
-
-				if [ -n "$w$i$s$u$r$p" ]; then
-					gitstring="$gitstring "
-				fi
-				if [ "$w" = "*" ]; then
-					gitstring="$gitstring\[$bad_color\]$w"
-				fi
-				if [ -n "$i" ]; then
-					gitstring="$gitstring\[$ok_color\]$i"
-				fi
-				if [ -n "$s" ]; then
-					gitstring="$gitstring\[$flags_color\]$s"
-				fi
-				if [ -n "$u" ]; then
-					gitstring="$gitstring\[$bad_color\]$u"
-				fi
-				gitstring="$gitstring\[$c_clear\]$r$p"
-			else
-				gitstring="$c${b##refs/heads/}${f:+ $f}$r$p"
+		local gitstring=
+		if [ -n "${GIT_PS1_SHOWCOLORHINTS-}" ]; then
+			local c_red='\e[31m'
+			local c_green='\e[32m'
+			local c_lblue='\e[1;34m'
+			local c_clear='\e[0m'
+			local op='\['
+			local cl='\]'
+			if [ $zsh = yes ]; then
+				op=
+				cl=
 			fi
-			gitstring=$(printf -- "$printf_format" "$gitstring")
-			PS1="$ps1pc_start$gitstring$ps1pc_end"
+			local bad_color=$c_red
+			local ok_color=$c_green
+			local branch_color="$c_clear"
+			local flags_color="$c_lblue"
+			local branchstring="$c${b##refs/heads/}"
+
+			if [ $detached = no ]; then
+				branch_color="$ok_color"
+			else
+				branch_color="$bad_color"
+			fi
+
+			# Setting gitstring directly with \[ and \] around colors
+			# is necessary to prevent wrapping issues!
+			gitstring="$op$branch_color$cl$branchstring$op$c_clear$cl"
+
+#			if [ -n "$w$i$s$u$r$p" ]; then
+#				gitstring="$gitstring "
+#			fi
+			if [ "$w" = "*" ]; then
+				if [ -n "$GIT_PS1_DIRTY" ]; then
+					gitstring="$gitstring$GIT_PS1_DIRTY"
+				else
+					gitstring="$gitstring$op$bad_color$cl$w"
+				fi
+			else
+				if [ -n "$GIT_PS1_CLEAN" ]; then
+					gitstring="$gitstring$GIT_PS1_CLEAN"
+				fi
+			fi
+			if [ -n "$i" ]; then
+				gitstring="$gitstring$op$ok_color$cl$i"
+			fi
+			if [ -n "$s" ]; then
+				gitstring="$gitstring$op$flags_color$cl$s"
+			fi
+			if [ -n "$u" ]; then
+				gitstring="$gitstring$op$bad_color$cl$u"
+			fi
+			gitstring="$gitstring$op$c_clear$cl$r$p"
 		else
-			# NO color option unless in PROMPT_COMMAND mode
-			printf -- "$printf_format" "$c${b##refs/heads/}${f:+ $f}$r$p"
+			gitstring="$c${b##refs/heads/}${f:+ $f}$r$p"
+		fi
+
+		gitstring=$(printf -- "$printf_format" "$gitstring")
+		
+		if [ $pmode = yes ]; then
+			echo $pstart$gitstring$pend
+		else
+			echo $gitstring
 		fi
 	fi
 }

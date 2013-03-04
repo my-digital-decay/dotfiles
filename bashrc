@@ -22,12 +22,12 @@ PATH=/opt/local/bin:/opt/local/sbin:$PATH
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH
 
 # source the local sh_aliases if it exists
-if [ -e "$HOME/dotfiles/sh_aliases" ] ; then
-  source "$HOME/dotfiles/sh_aliases"
+if [ -e "$HOME/.sh/sh_aliases" ] ; then
+  source "$HOME/.sh/sh_aliases"
 fi
 
 # source the local sh_func if it exists
-if [ -e "$HOME/dotfiles/sh_func" ] ; then
-  source "$HOME/dotfiles/sh_func"
+if [ -e "$HOME/.sh/sh_func" ] ; then
+  source "$HOME/.sh/sh_func"
 fi
 

@@ -17,12 +17,12 @@ endif
 " custom colorscheme
 colorscheme nnul
 
-" pathogen plugin management
-execute pathogen#infect()
-
 " Use Vim settings, rather then Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
 set nocompatible
+
+" pathogen plugin management
+execute pathogen#infect()
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
@@ -33,24 +33,17 @@ else
   set backup		" keep a backup file
 endif
 
+if has("mouse")
+  set mouse=a
+endif
+
 set history=50		" keep 50 lines of command line history
-"set ruler			" show the cursor position all the time
-"set showcmd		" display incomplete commands
-"set incsearch		" do incremental searching
 set tabstop=4		" tabs are 4 spaces
 set shiftwidth=4	" tabs are 4 spaces
-set mouse=a			" Enable mouse usage (all modes)
 set fileformats+=unix
-
-" For Win32 GUI: remove 't' flag from 'guioptions': no tearoff menu entries
-" let &guioptions = substitute(&guioptions, "t", "", "g")
 
 " Don't use Ex mode, use Q for formatting
 map Q gq
-
-" This is an alternative that also works in block mode, but the deleted
-" text is lost and it only works for putting the current register.
-"vnoremap p "_dp
 
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
@@ -72,8 +65,8 @@ if has("autocmd")
   augroup vimrcEx
   au!
 
-  " For all text files set 'textwidth' to 78 characters.
-  autocmd FileType text setlocal textwidth=78
+  " For all text files set 'textwidth' to 80 characters.
+  autocmd FileType text setlocal textwidth=80
 
   " When editing a file, always jump to the last known cursor position.
   " Don't do it when the position is invalid or when inside an event handler
@@ -84,9 +77,5 @@ if has("autocmd")
     \ endif
 
   augroup END
-
-else
-
-"  set autoindent		" always set autoindenting on
 
 endif " has("autocmd")

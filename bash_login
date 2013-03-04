@@ -7,12 +7,21 @@ if [ -f `brew --prefix`/etc/bash_completion ] ; then
   source `brew --prefix`/etc/bash_completion
 fi
 
+# for displaying git info in prompt
+if [ -f "$HOME/.sh/git-prompt.sh" ] ; then
+  source "$HOME/.sh/git-prompt.sh"
+fi
+
+GIT_PS1_SHOWDIRTYSTATE=yes
+#GIT_PS1_SHOWCOLORHINTS=yes
+#GIT_PS1_SHOWUPSTREAM="auto"
+GIT_PS1_SHOWSTASHSTATE=yes
+
 # Custom prompt (cygwin style)
-#export PS1='\[\e]0;\w\a\]\n\[\e[32m\]\u@\h \[\e[36m\]\w\[\e[0m\]\n\$ '
-export PS1='\[\e]0;\w\a\]\n\[\e[32m\]\u@\h \[\e[36m\]\w$(__git_ps1)\[\e[0m\]\n\$ '
+PS1='\[\e]0;\w\a\]\n\[\e[32m\]\u@\h \[\e[36m\]\w $(__git_ps1)\[\e[0m\]\n\$ '
 
 # source the local sh_func if it exists
-if [ -e "$HOME/dotfiles/sh_login" ] ; then
-  source "$HOME/dotfiles/sh_login"
+if [ -e "$HOME/.sh/sh_login" ] ; then
+  source "$HOME/.sh/sh_login"
 fi
 
