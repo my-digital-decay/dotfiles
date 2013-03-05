@@ -1,0 +1,8 @@
+# .screenrc
+
+startup_message off
+#caption always "%{= Wk}%-w%{= Bw}%n %t%{-}%+w %-="
+
+# Make xterm scrolling work properly with screen.
+termcapinfo xterm-256color|xterm-16color|xterm-color|xterm|xterms|xs|rxvt ti@:te@
+
