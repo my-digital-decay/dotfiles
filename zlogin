@@ -1,6 +1,8 @@
-# .zlogin
+# ~/.zlogin
+#echo .zlogin
 
-echo .zlogin
+# load zsh modules
+autoload -U zcalc
 
 # for displaying git info in prompt
 if [ -f "$HOME/.sh/git-prompt.sh" ] ; then
@@ -10,9 +12,11 @@ fi
 GIT_PS1_SHOWDIRTYSTATE=yes
 GIT_PS1_SHOWCOLORHINTS=yes
 #GIT_PS1_SHOWUPSTREAM="auto"
+GIT_PS1_SHOWUPSTREAM="verbose"
 GIT_PS1_SHOWSTASHSTATE=yes
-GIT_PS1_DIRTY="%{$fg[red]%}✱%{$reset_color%}"
-GIT_PS1_CLEAN="%{$fg[green]%}✓%{$reset_color%}"
+GIT_PS1_SHOWUNTRACKEDFILES=yes
+#GIT_PS1_DIRTY="%{$fg[red]%}✱%{$reset_color%}"
+#GIT_PS1_CLEAN="%{$fg[green]%}✓%{$reset_color%}"
 GIT_PS1_PREFIX="["
 GIT_PS1_SUFFIX="]"
 

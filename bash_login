@@ -1,6 +1,5 @@
-# .bash_login
-
-echo .bash_login
+# ~/.bash_login
+#echo .bash_login
 
 # add bash completion from brew
 if [ -f `brew --prefix`/etc/bash_completion ] ; then
@@ -14,11 +13,15 @@ fi
 
 GIT_PS1_SHOWDIRTYSTATE=yes
 #GIT_PS1_SHOWCOLORHINTS=yes
-#GIT_PS1_SHOWUPSTREAM="auto"
+GIT_PS1_SHOWUPSTREAM="auto"
 GIT_PS1_SHOWSTASHSTATE=yes
+GIT_PS1_SHOWUNTRACKEDFILES=yes
+GIT_PS1_PREFIX='['
+GIT_PS1_SUFFIX=']'
 
 # Custom prompt (cygwin style)
-PS1='\[\e]0;\w\a\]\n\[\e[32m\]\u@\h \[\e[36m\]\w $(__git_ps1)\[\e[0m\]\n\$ '
+#PS1='\[\e]0;\w\a\]\n\[\e[32m\]\u@\h \[\e[36m\]\w $(__git_ps1)\[\e[0m\]\n\$ '
+PS1='\[\e]0;\w\a\]\n\[\e[32m\]\u@\h \[\e[36m\]\w \[\e[33m\]$(__git_ps1)\[\e[0m\]\n\$ '
 
 # source the local sh_func if it exists
 if [ -e "$HOME/.sh/sh_login" ] ; then

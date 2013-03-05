@@ -1,6 +1,5 @@
 # ~/.zshrc
-
-echo .zshrc
+#echo .zshrc
 
 # options
 setopt prompt_subst

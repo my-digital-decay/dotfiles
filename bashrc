@@ -1,6 +1,5 @@
 # ~/.bashrc
-
-echo .bashrc
+#echo .bashrc
 
 # Don't put duplicate lines in the history.
 export HISTCONTROL=ignoredups

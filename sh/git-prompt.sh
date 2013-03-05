@@ -83,6 +83,7 @@
 # GIT_PS1_SUFFIX=")"
 # GIT_PS1_DIRTY="*"
 # GIT_PS1_CLEAN=""
+# GIT_PS1_UNTRACKED="!"
 
 # __gitdir accepts 0 or 1 arguments (i.e., location)
 # returns location of .git repo
@@ -202,26 +203,26 @@ __git_ps1_show_upstream ()
 		"") # no upstream
 			p="" ;;
 		"0	0") # equal to upstream
-			p="=" ;;
+			p=" =" ;;
 		"0	"*) # ahead of upstream
-			p=">" ;;
+			p=" >" ;;
 		*"	0") # behind upstream
-			p="<" ;;
+			p=" <" ;;
 		*)	    # diverged from upstream
-			p="<>" ;;
+			p=" <>" ;;
 		esac
 	else
 		case "$count" in
 		"") # no upstream
 			p="" ;;
 		"0	0") # equal to upstream
-			p=" u=" ;;
+			p=" =" ;;
 		"0	"*) # ahead of upstream
-			p=" u+${count#0	}" ;;
+			p=" +${count#0	}" ;;
 		*"	0") # behind upstream
-			p=" u-${count%	0}" ;;
+			p=" -${count%	0}" ;;
 		*)	    # diverged from upstream
-			p=" u+${count#*	}-${count%	*}" ;;
+			p=" +${count#*	}-${count%	*}" ;;
 		esac
 	fi
 
@@ -352,7 +353,7 @@ __git_ps1 ()
 
 			if [ -n "${GIT_PS1_SHOWUNTRACKEDFILES-}" ]; then
 				if [ -n "$(git ls-files --others --exclude-standard)" ]; then
-					u="%"
+					u="!"
 				fi
 			fi
 
@@ -366,29 +367,33 @@ __git_ps1 ()
 		if [ -n "${GIT_PS1_SHOWCOLORHINTS-}" ]; then
 			local c_red='\e[31m'
 			local c_green='\e[32m'
+			local c_yellow='\e[33m'
+			local c_cyan='\e[36m'
+			local c_magenta='\e[35m'
 			local c_lblue='\e[1;34m'
 			local c_clear='\e[0m'
-			local op='\['
-			local cl='\]'
+			local ob='\['
+			local cb='\]'
 			if [ $zsh = yes ]; then
-				op=
-				cl=
+				ob=
+				cb=
 			fi
 			local bad_color=$c_red
 			local ok_color=$c_green
 			local branch_color="$c_clear"
 			local flags_color="$c_lblue"
+			local up_color="$c_cyan"
 			local branchstring="$c${b##refs/heads/}"
 
 			if [ $detached = no ]; then
-				branch_color="$ok_color"
+				branch_color="$c_yellow"
 			else
 				branch_color="$bad_color"
 			fi
 
 			# Setting gitstring directly with \[ and \] around colors
 			# is necessary to prevent wrapping issues!
-			gitstring="$op$branch_color$cl$branchstring$op$c_clear$cl"
+			gitstring="$ob$branch_color$cb$branchstring$ob$c_clear$cb"
 
 #			if [ -n "$w$i$s$u$r$p" ]; then
 #				gitstring="$gitstring "
@@ -397,33 +402,36 @@ __git_ps1 ()
 				if [ -n "$GIT_PS1_DIRTY" ]; then
 					gitstring="$gitstring$GIT_PS1_DIRTY"
 				else
-					gitstring="$gitstring$op$bad_color$cl$w"
+					gitstring="$gitstring$ob$bad_color$cb$w"
 				fi
 			else
-				if [ -n "$GIT_PS1_CLEAN" ]; then
+				if [ -n "$i" ] && [ -n "$GIT_PS1_CLEAN" ]; then
 					gitstring="$gitstring$GIT_PS1_CLEAN"
 				fi
 			fi
 			if [ -n "$i" ]; then
-				gitstring="$gitstring$op$ok_color$cl$i"
+				gitstring="$gitstring$ob$ok_color$cb$i"
 			fi
 			if [ -n "$s" ]; then
-				gitstring="$gitstring$op$flags_color$cl$s"
+				gitstring="$gitstring$ob$flags_color$cb$s"
 			fi
 			if [ -n "$u" ]; then
-				gitstring="$gitstring$op$bad_color$cl$u"
+				gitstring="$gitstring$ob$bad_color$cb$u"
 			fi
-			gitstring="$gitstring$op$c_clear$cl$r$p"
+			gitstring="$gitstring$ob$c_clear$cb$r"
+			gitstring="$gitstring$ob$up_color$cb$p"
+			gitstring="$gitstring$ob$c_clear$cb"
 		else
-			gitstring="$c${b##refs/heads/}${f:+ $f}$r$p"
+#			gitstring="$c${b##refs/heads/}${f:+ $f}$r$p"
+			gitstring="$c${b##refs/heads/}$f$r$p"
 		fi
 
 		gitstring=$(printf -- "$printf_format" "$gitstring")
 		
 		if [ $pmode = yes ]; then
-			echo $pstart$gitstring$pend
+			echo "$pstart$gitstring$pend"
 		else
-			echo $gitstring
+			echo "$gitstring"
 		fi
 	fi
 }

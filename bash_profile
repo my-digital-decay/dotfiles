@@ -1,6 +1,5 @@
 # ~/.bash_profile: executed by bash for login shells.
-
-echo .bash_profile
+#echo .bash_profile
 
 # source the users bashrc if it exists
 if [ -e "$HOME/.bashrc" ] ; then
