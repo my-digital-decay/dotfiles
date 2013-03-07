@@ -3,6 +3,14 @@
 
 # options
 setopt prompt_subst
+#setopt auto_cd
+setopt auto_pushd
+setopt pushd_silent
+setopt pushd_minus
+setopt pushd_ignore_dups
+setopt share_history
+setopt hist_save_no_dups
+setopt c_bases
 
 # modules
 autoload -U colors && colors
@@ -21,6 +29,11 @@ PROMPT="
 
 # MacPorts Installer addition on 2011-03-09_at_23:07:16: adding an appropriate PATH variable for use with MacPorts.
 PATH=/opt/local/bin:/opt/local/sbin:$PATH
+
+# source users bin directory
+if [ -e "$HOME/bin" ] ; then
+	PATH=$HOME/bin:$PATH
+fi
 
 # brew path takes precedence over MacPorts
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH

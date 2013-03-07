@@ -17,6 +17,11 @@ export PS1='\[\e]0;\w\a\]\n\[\e[32m\]\h \[\e[36m\]\w\[\e[0m\]\n\$ '
 # MacPorts Installer addition on 2011-03-09_at_23:07:16: adding an appropriate PATH variable for use with MacPorts.
 PATH=/opt/local/bin:/opt/local/sbin:$PATH
 
+# source users bin directory
+if [ -e "$HOME/bin" ] ; then
+	PATH=$HOME/bin:$PATH
+fi
+
 # brew path takes precedence over MacPorts
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH
 
