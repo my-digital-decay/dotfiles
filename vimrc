@@ -1,13 +1,13 @@
 " An example for a vimrc file.
 "
-" Maintainer:	Bram Moolenaar <Bram@vim.org>
-" Last change:	2002 Sep 19
+" Maintainer: Bram Moolenaar <Bram@vim.org>
+" Last change:  2002 Sep 19
 "
 " To use it, copy it to
 "     for Unix and OS/2:  ~/.vimrc
-"	      for Amiga:  s:.vimrc
+"       for Amiga:  s:.vimrc
 "  for MS-DOS and Win32:  $VIM\_vimrc
-"	    for OpenVMS:  sys$login:.vimrc
+"     for OpenVMS:  sys$login:.vimrc
 
 " When started as "evim", evim.vim will already have done these settings.
 if v:progname =~? "evim"
@@ -16,6 +16,12 @@ endif
 
 " custom colorscheme
 colorscheme nnul
+
+" gui only settings (these are recomended to be set here instead of .gvimrc)
+"if has("gui_running")
+  " powerline
+  let g:Powerline_symbols = 'fancy'
+"endif
 
 " Use Vim settings, rather then Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
@@ -27,23 +33,31 @@ execute pathogen#infect()
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
+" set some global default settings
+"set listchars=tab:>-,trail:~
+set nolist
+set noexpandtab
+set tabstop=4
+set shiftwidth=4
+set fileformats+=unix
+set history=100
+
+" Don't use Ex mode, use Q for formatting
+map Q gq
+
+" indent on visual selection
+vmap <Tab> >gv
+vmap <S-Tab> <gv
+
 if has("vms")
-  set nobackup		" do not keep a backup file, use versions instead
+  set nobackup    " do not keep a backup file, use versions instead
 else
-  set backup		" keep a backup file
+  set backup    " keep a backup file
 endif
 
 if has("mouse")
   set mouse=a
 endif
-
-set history=50		" keep 50 lines of command line history
-set tabstop=4		" tabs are 4 spaces
-set shiftwidth=4	" tabs are 4 spaces
-set fileformats+=unix
-
-" Don't use Ex mode, use Q for formatting
-map Q gq
 
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
@@ -56,8 +70,6 @@ endif
 if has("autocmd")
 
   " Enable file type detection.
-  " Use the default filetype settings, so that mail gets 'tw' set to 72,
-  " 'cindent' is on in C files, etc.
   " Also load indent files, to automatically do language-dependent indenting.
   filetype plugin indent on
 
@@ -77,5 +89,10 @@ if has("autocmd")
     \ endif
 
   augroup END
+
+  " set custom settings based on filetype
+  autocmd FileType c,cpp,glsl setlocal softtabstop=4|setlocal expandtab|setlocal list|setlocal number
+  autocmd FileType ruby,vim setlocal tabstop=2|setlocal shiftwidth=2|setlocal softtabstop=2|
+        \ setlocal expandtab|setlocal list|setlocal number
 
 endif " has("autocmd")

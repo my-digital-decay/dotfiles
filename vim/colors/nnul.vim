@@ -1,8 +1,8 @@
 " local syntax file - set colors on a per-machine basis:
-" vim: tw=0 ts=4 sw=4
+" vim: tw=0 ts=2 sw=2
 " Vim color file
-" Maintainer:	Ron Aaron <ron@ronware.org>
-" Last Change:	2003 May 02
+" Maintainer: Ron Aaron <ron@ronware.org>
+" Last Change:  2003 May 02
 " Modified by: Keith W. Thompson
 
 hi clear
@@ -12,25 +12,28 @@ if exists("syntax_on")
 endif
 let g:colors_name = "nnul"
 
-highlight Comment	 ctermfg=8						  guifg=#808080
-highlight Constant	 ctermfg=14			   cterm=none guifg=#00ffff				  gui=none
-highlight Identifier ctermfg=6						  guifg=#00c0c0
-highlight Statement  ctermfg=3			   cterm=bold guifg=#c0c000				  gui=bold
-highlight PreProc	 ctermfg=10						  guifg=#00ff00
-highlight Type		 ctermfg=2						  guifg=#00c000
-highlight Special	 ctermfg=12						  guifg=#0000ff
-highlight Error					ctermbg=9							guibg=#ff0000
-highlight Todo		 ctermfg=4	ctermbg=3			  guifg=#000080 guibg=#c0c000
-highlight Directory  ctermfg=2						  guifg=#00c000
-highlight StatusLine ctermfg=11 ctermbg=12 cterm=none guifg=#ffff00 guibg=#0000ff gui=none
-highlight Normal									  guifg=#ffffff guibg=#000000
-highlight Search				ctermbg=3							guibg=#c0c000
+highlight Normal                                          guifg=#d8d8d8 guibg=#0e0e0e
+
+highlight Comment     ctermfg=8                           guifg=#5f5e5e
+highlight Constant    ctermfg=14              cterm=none  guifg=#09e6e8               gui=none
+highlight Identifier  ctermfg=6                           guifg=#08a0a0
+highlight Statement   ctermfg=3               cterm=bold  guifg=#cbd700               gui=bold
+highlight PreProc     ctermfg=10                          guifg=#98ec29
+highlight Type        ctermfg=2                           guifg=#5fca01
+highlight Special     ctermfg=12                          guifg=#6486f3
+highlight Error       ctermbg=9                           guibg=#e73729
+highlight Todo        ctermfg=4   ctermbg=3               guifg=#445dd1 guibg=#cbd700
+highlight Directory   ctermfg=4                           guifg=#445dd1
+highlight StatusLine  ctermfg=7   ctermbg=4   cterm=none  guifg=#b4b4b4 guibg=#445dd1 gui=none
+highlight Search      ctermbg=15              cterm=bold                guibg=#eaeaea
+highlight Title       ctermfg=5               term=bold   guifg=#cc45ca               gui=bold
+highlight LineNr      ctermfg=7               cterm=none  guifg=#b4b4b4               gui=none
+highlight Operator    ctermfg=4                           guifg=#6287a7
 
 " {kwt:2013.02.13 - Custom color additions used by custom syntax files}
-highlight Function	 ctermfg=6						  guifg=#00a0a0
-highlight Operator	 ctermfg=4						  guifg=#4040ff
-highlight cString 	 ctermfg=5						  guifg=#a000a0
-highlight Number 	 ctermfg=6						  guifg=#00a0a0
-highlight Bold									 	  guifg=#ffffff guibg=#000000 gui=bold
-highlight Math	 	 ctermfg=1						  guifg=#a00000
+"highlight Function  ctermfg=6                            guifg=#00a0a0
+highlight cString     ctermfg=9                           guifg=#e73729
+highlight Number      ctermfg=6                           guifg=#08a0a0
+"highlight Bold                                            guifg=#ffffff guibg=#000000 gui=bold
+"highlight Math        ctermfg=1                           guifg=#dba36f
 
