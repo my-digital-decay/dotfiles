@@ -12,7 +12,14 @@ export CLICOLOR=1
 export LSCOLORS=ExGxCxDxBxegedabagacad
 
 # default prompt
-export PS1='\[\e]0;\w\a\]\n\[\e[32m\]\h \[\e[36m\]\w\[\e[0m\]\n\$ '
+case ${TERM} in
+	xterm*|rxvt*|gnome*|screen*)
+		PS1='\[\e]0;\w\a\]\n\[\e[32m\]\h \[\e[36m\]\w\[\e[0m\]\n\$ '
+		;;
+	*)
+		PS1='\n\h \w\n\$ '
+		;;
+esac
 
 # MacPorts Installer addition on 2011-03-09_at_23:07:16: adding an appropriate PATH variable for use with MacPorts.
 PATH=/opt/local/bin:/opt/local/sbin:$PATH

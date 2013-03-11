@@ -12,16 +12,23 @@ if [ -f "$HOME/.sh/git-prompt.sh" ] ; then
 fi
 
 GIT_PS1_SHOWDIRTYSTATE=yes
-#GIT_PS1_SHOWCOLORHINTS=yes
-GIT_PS1_SHOWUPSTREAM="auto"
+#GIT_PS1_SHOWUPSTREAM="auto"
+GIT_PS1_SHOWUPSTREAM="verbose"
 GIT_PS1_SHOWSTASHSTATE=yes
 GIT_PS1_SHOWUNTRACKEDFILES=yes
 GIT_PS1_PREFIX='['
 GIT_PS1_SUFFIX=']'
 
 # Custom prompt (cygwin style)
-#PS1='\[\e]0;\w\a\]\n\[\e[32m\]\u@\h \[\e[36m\]\w $(__git_ps1)\[\e[0m\]\n\$ '
-PS1='\[\e]0;\w\a\]\n\[\e[32m\]\u@\h \[\e[36m\]\w \[\e[33m\]$(__git_ps1)\[\e[0m\]\n\$ '
+case ${TERM} in
+	xterm*|rxvt*|gnome*|screen*)
+		#GIT_PS1_SHOWCOLORHINTS=yes
+		PS1='\[\e]0;\w\a\]\n\[\e[32m\]\u@\h \[\e[36m\]\w \[\e[33m\]$(__git_ps1)\[\e[0m\]\n\$ '
+		;;
+	*)
+		PS1='\n\u@\h \w $(__git_ps1)\n\$ '
+		;;
+esac
 
 # source the local sh_func if it exists
 if [ -e "$HOME/.sh/sh_login" ] ; then
