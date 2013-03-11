@@ -12,28 +12,49 @@ if exists("syntax_on")
 endif
 let g:colors_name = "nnul"
 
-highlight Normal                                          guifg=#d8d8d8 guibg=#0e0e0e
+hi Normal                                         guifg=#d8d8d8 guibg=#0e0e0e
 
-highlight Comment     ctermfg=8                           guifg=#5f5e5e
-highlight Constant    ctermfg=14              cterm=none  guifg=#09e6e8               gui=none
-highlight Identifier  ctermfg=6                           guifg=#08a0a0
-highlight Statement   ctermfg=3               cterm=bold  guifg=#cbd700               gui=bold
-highlight PreProc     ctermfg=10                          guifg=#98ec29
-highlight Type        ctermfg=2                           guifg=#5fca01
-highlight Special     ctermfg=12                          guifg=#6486f3
-highlight Error       ctermbg=9                           guibg=#e73729
-highlight Todo        ctermfg=4   ctermbg=3               guifg=#445dd1 guibg=#cbd700
-highlight Directory   ctermfg=4                           guifg=#445dd1
-highlight StatusLine  ctermfg=7   ctermbg=4   cterm=none  guifg=#b4b4b4 guibg=#445dd1 gui=none
-highlight Search      ctermbg=15              cterm=bold                guibg=#eaeaea
-highlight Title       ctermfg=5               term=bold   guifg=#cc45ca               gui=bold
-highlight LineNr      ctermfg=7               cterm=none  guifg=#b4b4b4               gui=none
-highlight Operator    ctermfg=4                           guifg=#6287a7
+hi Comment    ctermfg=8                           guifg=#5f5e5e
+hi Constant   ctermfg=14              cterm=none  guifg=#09e6e8               gui=none
+hi Identifier ctermfg=6                           guifg=#08a0a0
+hi Statement  ctermfg=3               cterm=bold  guifg=#cbd700               gui=bold
+hi PreProc    ctermfg=10                          guifg=#98ec29
+hi Type       ctermfg=2                           guifg=#5fca01
+hi Special    ctermfg=12                          guifg=#6486f3
+hi Error      ctermbg=9                           guibg=#e73729
+hi Todo       ctermfg=4   ctermbg=3               guifg=#445dd1 guibg=#cbd700
+hi Directory  ctermfg=4                           guifg=#445dd1
+hi StatusLine ctermfg=7   ctermbg=4   cterm=none  guifg=#b4b4b4 guibg=#445dd1 gui=none
+hi Search     ctermbg=15              cterm=bold                guibg=#eaeaea
+hi Title      ctermfg=5               term=bold   guifg=#cc45ca               gui=bold
+hi LineNr     ctermfg=7               cterm=none  guifg=#b4b4b4               gui=none
+hi Operator   ctermfg=4                           guifg=#6287a7
 
 " {kwt:2013.02.13 - Custom color additions used by custom syntax files}
 "highlight Function  ctermfg=6                            guifg=#00a0a0
-highlight cString     ctermfg=9                           guifg=#e73729
-highlight Number      ctermfg=6                           guifg=#08a0a0
+hi cString    ctermfg=9                           guifg=#e73729
+hi Number     ctermfg=6                           guifg=#08a0a0
 "highlight Bold                                            guifg=#ffffff guibg=#000000 gui=bold
 "highlight Math        ctermfg=1                           guifg=#dba36f
+
+" Direct color / propertie mappings
+hi Color00    ctermfg=0
+hi Color01    ctermfg=1
+hi Color02    ctermfg=2
+hi Color03    ctermfg=3
+hi Color04    ctermfg=4
+hi Color05    ctermfg=5
+hi Color06    ctermfg=6
+hi Color07    ctermfg=7
+hi Color08    ctermfg=8
+hi Color09    ctermfg=9
+hi Color10    ctermfg=10
+hi Color11    ctermfg=11
+hi Color12    ctermfg=12
+hi Color13    ctermfg=13
+hi Color14    ctermfg=14
+hi Color15    ctermfg=15
+hi Bold       cterm=bold
+hi Italic     cterm=italic
+hi Inverse    cterm=inverse
 

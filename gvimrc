@@ -10,7 +10,7 @@ set lines=68
 " set guioptions-=T
 
 " Sets the font and size
-set guifont=MonacoPowerline:h12
+set guifont=MonacoNewPowerline:h12
 set noantialias
 
 " Sets the percent transparency
