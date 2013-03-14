@@ -6,11 +6,7 @@ if [ -f `brew --prefix`/etc/bash_completion ] ; then
   source `brew --prefix`/etc/bash_completion
 fi
 
-# for displaying git info in prompt
-if [ -f "$HOME/.sh/git-prompt.sh" ] ; then
-  source "$HOME/.sh/git-prompt.sh"
-fi
-
+# requires the git-prompt.plugin to be used (see .sh/plugins)
 GIT_PS1_SHOWDIRTYSTATE=yes
 #GIT_PS1_SHOWUPSTREAM="auto"
 GIT_PS1_SHOWUPSTREAM="verbose"
@@ -31,7 +27,7 @@ case ${TERM} in
 esac
 
 # source the local sh_func if it exists
-if [ -e "$HOME/.sh/sh_login" ] ; then
-  source "$HOME/.sh/sh_login"
+if [ -e "$HOME/.sh/login.sh" ] ; then
+  source "$HOME/.sh/login.sh"
 fi
 

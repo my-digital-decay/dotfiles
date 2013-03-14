@@ -6,6 +6,7 @@ if [ -f "$HOME/.sh/git-prompt.sh" ] ; then
   source "$HOME/.sh/git-prompt.sh"
 fi
 
+# requires the git-prompt.plugin to be used (see .sh/plugins)
 GIT_PS1_SHOWDIRTYSTATE=yes
 #GIT_PS1_SHOWUPSTREAM="auto"
 GIT_PS1_SHOWUPSTREAM="verbose"
@@ -32,7 +33,7 @@ esac
 #RPROMPT='$(__git_ps1)'
 
 # source the local sh_func if it exists
-if [ -e "$HOME/dotfiles/sh_login" ] ; then
-  source "$HOME/dotfiles/sh_login"
+if [ -e "$HOME/.sh/login.sh" ] ; then
+  source "$HOME/.sh/login.sh"
 fi
 

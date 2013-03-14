@@ -1,4 +1,4 @@
-# sh_func
+# func.sh
 
 # This function defines a 'cd' replacement function capable of keeping, 
 # displaying and accessing history of visited directories, up to 10 entries.
@@ -66,4 +66,5 @@ cd_func ()
 }
 
 alias cd=cd_func
+alias home='cd ~'
 
