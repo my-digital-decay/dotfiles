@@ -1,4 +1,4 @@
-" Vim syntax file the OpenGL Shading Language
+" Vim syntax file for the OpenGL Shading Language
 " Language:     GLSL
 " Author:       Nathan Cournia <nathan@cournia.com>
 " Date:         June 30, 2004
