@@ -22,7 +22,7 @@ case ${TERM} in
 esac
 
 # source the common shrc
-if [ -e "$HOME/.sh/shrc" ] ; then
-  source "$HOME/.sh/shrc"
+if [ -e "$HOME/.shell/shrc" ] ; then
+  source "$HOME/.shell/shrc"
 fi
 

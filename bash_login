@@ -27,7 +27,7 @@ case ${TERM} in
 esac
 
 # source the local sh_func if it exists
-if [ -e "$HOME/.sh/login.sh" ] ; then
-  source "$HOME/.sh/login.sh"
+if [ -e "$HOME/.shell/login.sh" ] ; then
+  source "$HOME/.shell/login.sh"
 fi
 

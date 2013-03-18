@@ -12,8 +12,8 @@ login_plugins=(brew git-prompt osx)
 # Load all of the login plugins
 #for plugin ($login_plugins); do #zsh only
 for plugin in "${login_plugins[@]}"; do
-  if [ -f $SH/plugins/$plugin.plugin.sh ]; then
-    source $SH/plugins/$plugin.plugin.sh
+  if [ -f $DOTSHELL/plugins/$plugin.plugin.sh ]; then
+    source $DOTSHELL/plugins/$plugin.plugin.sh
   fi
 done
 

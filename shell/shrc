@@ -1,5 +1,5 @@
 # shrc
-SH=${HOME}/.sh
+DOTSHELL=${HOME}/.shell
 
 # MacPorts Installer addition on 2011-03-09_at_23:07:16: adding an appropriate PATH variable for use with MacPorts.
 PATH=/opt/local/bin:/opt/local/sbin:$PATH
@@ -21,8 +21,8 @@ plugins=(cd git grep history ls ruby)
 # Load all of the plugins
 #for plugin ($plugins); do #zsh only
 for plugin in "${plugins[@]}"; do
-  if [ -f $SH/plugins/$plugin.plugin.sh ]; then
-    source $SH/plugins/$plugin.plugin.sh
+  if [ -f $DOTSHELL/plugins/$plugin.plugin.sh ]; then
+    source $DOTSHELL/plugins/$plugin.plugin.sh
   fi
 done
 

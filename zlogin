@@ -1,11 +1,6 @@
 # ~/.zlogin
 #echo .zlogin
 
-# for displaying git info in prompt
-if [ -f "$HOME/.sh/git-prompt.sh" ] ; then
-  source "$HOME/.sh/git-prompt.sh"
-fi
-
 # requires the git-prompt.plugin to be used (see .sh/plugins)
 GIT_PS1_SHOWDIRTYSTATE=yes
 #GIT_PS1_SHOWUPSTREAM="auto"
@@ -33,7 +28,7 @@ esac
 #RPROMPT='$(__git_ps1)'
 
 # source the local sh_func if it exists
-if [ -e "$HOME/.sh/login.sh" ] ; then
-  source "$HOME/.sh/login.sh"
+if [ -e "$HOME/.shell/login.sh" ] ; then
+  source "$HOME/.shell/login.sh"
 fi
 
