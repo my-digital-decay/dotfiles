@@ -7,7 +7,7 @@
 #echo .zlogin
 
 # plugins (login only)
-login_plugins=(brew git-prompt osx)
+login_plugins=(git-prompt)
 
 # source the local sh_func if it exists
 if [ -e "${HOME}/dotfiles/zlogin" ] ; then

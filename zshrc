@@ -3,6 +3,12 @@
 
 #echo dotfiles/zshrc
 
+# modules
+autoload -U colors && colors
+autoload -U promptinit && promptinit
+autoload -U compinit && compinit
+autoload -U zcalc
+
 # source the common shrc
 if [ -e "${HOME}/dotfiles/shell/shrc" ] ; then
   source "${HOME}/dotfiles/shell/shrc"
@@ -25,12 +31,6 @@ setopt share_history
 
 setopt c_bases
 
-# modules
-autoload -U colors && colors
-autoload -U promptinit && promptinit
-autoload -U compinit && compinit
-autoload -U zcalc
-
 # add some key bindings
 bindkey '\e[3~' delete-char
 bindkey '\e[2~' overwrite-mode
@@ -38,7 +38,7 @@ bindkey ' ' magic-space
 
 # Custom prompt (cygwin style)
 case ${TERM} in
-	xterm*|rxvt*|gnome*|screen*)
+	xterm*|rxvt*|gnome*|screen*|cygwin)
 		PROMPT="
 %{$fg[green]%}%m%{$reset_color%} %{$fg[cyan]%}%~ %{$reset_color%}
 %(!.#.$) "
