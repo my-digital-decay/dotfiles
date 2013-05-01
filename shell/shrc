@@ -1,19 +1,34 @@
 # shrc
 DOTSHELL=${HOME}/.shell
+HISTSIZE=1000
+SAVEHIST=1000
 
-# MacPorts Installer addition on 2011-03-09_at_23:07:16: adding an appropriate PATH variable for use with MacPorts.
-PATH=/opt/local/bin:/opt/local/sbin:$PATH
+# platform specific paths
+case `uname` in
+	Darwin)
+		# MacPorts PATH variableis
+		PATH=/opt/local/bin:/opt/local/sbin:$PATH
+
+		# brew path takes precedence over MacPorts
+		PATH=/usr/local/bin:/usr/local/sbin:$PATH
+		;;
+	Linux)
+		;;
+	*)
+		;;
+esac
 
 # source users bin directory
 if [ -e "$HOME/bin" ] ; then
 	PATH=$HOME/bin:$PATH
 fi
-
-# brew path takes precedence over MacPorts
-export PATH=/usr/local/bin:/usr/local/sbin:$PATH
+export PATH
 
 # for compatibility with non-zsh shells
 [ $ZSH_NAME ] || alias compdef="true"
+
+# increase size of cd history
+CD_DEPTH=50
 
 # plugins
 plugins=(cd git grep history ls ruby)
