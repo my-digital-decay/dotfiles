@@ -130,7 +130,8 @@ __git_ps1_show_upstream ()
 			fi
 			;;
 		svn-remote.*.url)
-			svn_remote[ $((${#svn_remote[@]} + 1)) ]="$value"
+			local idx=$((${#svn_remote[@]} + 1))
+			svn_remote[$idx]="$value"
 			svn_url_pattern+="\\|$value"
 			upstream=svn+git # default upstream is SVN if available, else git
 			;;
@@ -152,25 +153,28 @@ __git_ps1_show_upstream ()
 	svn*)
 		# get the upstream from the "git-svn-id: ..." in a commit message
 		# (git-svn uses essentially the same procedure internally)
-		local svn_upstream=($(git log --first-parent -1 \
-					--grep="^git-svn-id: \(${svn_url_pattern#??}\)" 2>/dev/null))
-		if [[ 0 -ne ${#svn_upstream[@]} ]]; then
-			svn_upstream=${svn_upstream[ ${#svn_upstream[@]} - 2 ]}
-			svn_upstream=${svn_upstream%@*}
-			local n_stop="${#svn_remote[@]}"
-			for ((n=1; n <= n_stop; n++)); do
-				svn_upstream=${svn_upstream#${svn_remote[$n]}}
-			done
 
-			if [[ -z "$svn_upstream" ]]; then
-				# default branch name for checkouts with no layout:
-				upstream=${GIT_SVN_ID:-git-svn}
-			else
-				upstream=${svn_upstream#/}
-			fi
-		elif [[ "svn+git" = "$upstream" ]]; then
+## TODO fix this		
+##		local svn_upstream=($(git log --first-parent -1 \
+##					--grep="^git-svn-id: \(${svn_url_pattern#??}\)" 2>/dev/null))
+##		if [[ 0 -ne ${#svn_upstream[@]} ]]; then
+##			local idx=${#svn_upstream[@]} - 2
+##			svn_upstream=${svn_upstream[$idx]}
+##			svn_upstream=${svn_upstream%@*}
+##			local n_stop="${#svn_remote[@]}"
+##			for ((n=1; n <= n_stop; n++)); do
+##				svn_upstream=${svn_upstream#${svn_remote[$n]}}
+##			done
+##
+##			if [[ -z "$svn_upstream" ]]; then
+##				# default branch name for checkouts with no layout:
+##				upstream=${GIT_SVN_ID:-git-svn}
+##			else
+##				upstream=${svn_upstream#/}
+##			fi
+##		elif [[ "svn+git" = "$upstream" ]]; then
 			upstream="@{upstream}"
-		fi
+##		fi
 		;;
 	esac
 
