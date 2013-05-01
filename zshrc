@@ -1,4 +1,6 @@
 # ~/.zshrc
+# Author: keith w. thompson
+
 #echo .zshrc
 
 # options
@@ -8,8 +10,14 @@ setopt auto_pushd
 setopt pushd_silent
 setopt pushd_minus
 setopt pushd_ignore_dups
-setopt share_history
+
+setopt extended_history
+setopt hist_reduce_blanks
+setopt hist_ignore_all_dups
 setopt hist_save_no_dups
+setopt append_history
+setopt share_history
+
 setopt c_bases
 
 # modules
