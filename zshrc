@@ -1,7 +1,12 @@
-# ~/.zshrc
+# dotfiles/zshrc
 # Author: keith w. thompson
 
-#echo .zshrc
+#echo dotfiles/zshrc
+
+# source the common shrc
+if [ -e "${HOME}/dotfiles/shell/shrc" ] ; then
+  source "${HOME}/dotfiles/shell/shrc"
+fi
 
 # options
 setopt prompt_subst
@@ -44,9 +49,4 @@ case ${TERM} in
 %(!.#.$) "
 		;;
 esac
-
-# source the common shrc
-if [ -e "$HOME/.shell/shrc" ] ; then
-  source "$HOME/.shell/shrc"
-fi
 

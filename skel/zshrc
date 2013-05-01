@@ -1,0 +1,19 @@
+# ~/.zshrc
+# Author: keith w. thompson
+#
+# This is a default skeleton file copied from dotfiles/skel.
+# Make local only modifications to this file in your home directory.
+
+#echo .zshrc
+
+# shell plugins
+# plugins=() specifies which shell plugins to load.
+# shared plugins are located at dotfiles/shell/plugins.
+# local plugins can be added in ./local/shell/plugins.
+plugins=(cd git grep history ls ruby)
+
+# source the dotfiles/zshrc common file
+if [ -e "$HOME/dotfiles/zshrc" ] ; then
+  source "$HOME/dotfiles/zshrc"
+fi
+

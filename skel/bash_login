@@ -1,0 +1,36 @@
+# .bash_login
+# Author: keith w. thompson
+#
+# This is a default skeleton file copied from dotfiles/skel.
+# Make local only modifications to this file in your home directory.
+
+#echo .bash_login
+
+# plugins (login only)
+login_plugins=(brew git-prompt osx)
+
+# source the local sh_func if it exists
+if [ -e "${HOME}/dotfiles/bash_login" ] ; then
+  source "${HOME}/dotfiles/bash_login"
+fi
+
+# requires the git-prompt.plugin to be used (see shell/plugins)
+GIT_PS1_SHOWDIRTYSTATE=yes
+#GIT_PS1_SHOWUPSTREAM="auto"
+GIT_PS1_SHOWUPSTREAM="verbose"
+GIT_PS1_SHOWSTASHSTATE=yes
+GIT_PS1_SHOWUNTRACKEDFILES=yes
+GIT_PS1_PREFIX='['
+GIT_PS1_SUFFIX=']'
+
+# Custom prompt (cygwin style)
+case ${TERM} in
+	xterm*|rxvt*|gnome*|screen*|cygwin)
+		#GIT_PS1_SHOWCOLORHINTS=yes
+		PS1='\[\e]0;\w\a\]\n\[\e[32m\]\u@\h \[\e[36m\]\w \[\e[33m\]$(__git_ps1)\[\e[0m\]\n\$ '
+		;;
+	*)
+		PS1='\n\u@\h \w $(__git_ps1)\n\$ '
+		;;
+esac
+

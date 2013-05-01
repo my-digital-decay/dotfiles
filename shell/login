@@ -1,51 +1,15 @@
-# dotfiles/shell/shrc
+# dotfiles/shell/login
 # Author: keith w. thompson
 
-DOTSHELL=${HOME}/dotfiles/shell
-DOTLOCAL_SHELL=${HOME}/.local/shell
-UNAME=`uname`
+# node.js path
+export NODE_PATH=/usr/local/lib/node_modules
 
-HISTSIZE=1000
-SAVEHIST=1000
-
-# platform specific paths
-case $UNAME in
-Darwin)
-	# MacPorts PATH variableis
-	PATH=/opt/local/bin:/opt/local/sbin:$PATH
-
-	# brew path takes precedence over MacPorts
-	PATH=/usr/local/bin:/usr/local/sbin:$PATH
-
-	PLUGIN_OS=osx
-	;;
-Linux)
-	PLUGIN_OS=linux
-	;;
-Cygwin)
-	PLUGIN_OS=cygwin
-	;;
-*)
-	PLUGIN_OS=
-	;;
-esac
-
-# source users bin directory
-if [ -e "$HOME/bin" ] ; then
-	PATH=$HOME/bin:$PATH
-fi
-export PATH
-
-# for compatibility with non-zsh shells
-[ $ZSH_NAME ] || alias compdef="true"
-
-# increase size of cd history
-CD_DEPTH=50
-
+# save out the base path so other commands can reset the PATH if needed
+export BASE_PATH=$PATH
 
 # Load all of the plugins
 #for plugin ($plugins); do #zsh only
-for plugin in "${plugins[@]}"; do
+for plugin in "${login_plugins[@]}"; do
   # shared plugins
   if [ -f $DOTSHELL/plugins/$plugin.plugin.sh ]; then
     source $DOTSHELL/plugins/$plugin.plugin.sh
@@ -59,7 +23,7 @@ for plugin in "${plugins[@]}"; do
 done
 
 # Load OS specific plugins
-for plugin in "${plugins[@]}"; do
+for plugin in "${login_plugins[@]}"; do
   # shared os plugins
   if [ -f $DOTSHELL/plugins/$plugin.${PLUGIN_OS}.plugin.sh ]; then
     source $DOTSHELL/plugins/$plugin.${PLUGIN_OS}.plugin.sh

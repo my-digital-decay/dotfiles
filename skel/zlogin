@@ -1,0 +1,42 @@
+# .zlogin
+# Author: keith w. thompson
+#
+# This is a default skeleton file copied from dotfiles/skel.
+# Make local only modifications to this file in your home directory.
+
+#echo .zlogin
+
+# plugins (login only)
+login_plugins=(brew git-prompt osx)
+
+# source the local sh_func if it exists
+if [ -e "${HOME}/dotfiles/zlogin" ] ; then
+  source "${HOME}/dotfiles/zlogin"
+fi
+
+# requires the git-prompt.plugin to be used (see shell/plugins)
+GIT_PS1_SHOWDIRTYSTATE=yes
+#GIT_PS1_SHOWUPSTREAM="auto"
+GIT_PS1_SHOWUPSTREAM="verbose"
+GIT_PS1_SHOWSTASHSTATE=yes
+GIT_PS1_SHOWUNTRACKEDFILES=yes
+GIT_PS1_PREFIX="["
+GIT_PS1_SUFFIX="]"
+
+# Custom prompt (cygwin style)
+case ${TERM} in
+	xterm*|rxvt*|gnome*|screen*|cygwin)
+		GIT_PS1_SHOWCOLORHINTS=yes
+		PROMPT='
+%{$fg[green]%}%n@%m%{$reset_color%} %{$fg[cyan]%}%~%{$reset_color%} $(__git_ps1)
+%(!.#.$) '
+		;;
+	*)
+		PROMPT="
+%n@%m %~ $(__git_ps1)
+%(!.#.$) "
+		;;
+esac
+
+#RPROMPT='$(__git_ps1)'
+

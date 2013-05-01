@@ -1,0 +1,19 @@
+# .bashrc
+# Author: keith w. thompson
+#
+# This is a default skeleton file copied from dotfiles/skel.
+# Make local only modifications to this file in your home directory.
+
+#echo .bashrc
+
+# shell plugins
+# plugins=() specifies which shell plugins to load.
+# shared plugins are located at dotfiles/shell/plugins.
+# local plugins can be added in ./local/shell/plugins.
+plugins=(cd git grep history ls ruby)
+
+# source the dotfiles/bashrc common file
+if [ -e "${HOME}/dotfiles/bashrc" ] ; then
+  source "${HOME}/dotfiles/bashrc"
+fi
+

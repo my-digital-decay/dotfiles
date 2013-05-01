@@ -1,3 +1,0 @@
-# ~/.zshenv
-#echo .zshenv
-
