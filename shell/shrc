@@ -42,6 +42,8 @@ export PATH
 # increase size of cd history
 CD_DEPTH=50
 
+# default the editor to vim
+export EDITOR=vim
 
 # Load all of the plugins
 #for plugin ($plugins); do #zsh only
