@@ -20,6 +20,7 @@ hi Identifier ctermfg=6                           guifg=#08a0a0
 hi Statement  ctermfg=3               cterm=bold  guifg=#cbd700               gui=bold
 hi PreProc    ctermfg=10                          guifg=#98ec29
 hi Type       ctermfg=2                           guifg=#5fca01
+"hi Type       ctermfg=4                           guifg=#445dd1
 hi Special    ctermfg=12                          guifg=#6486f3
 hi Error                  ctermbg=9                             guibg=#e73729
 hi Todo       ctermfg=4   ctermbg=3               guifg=#445dd1 guibg=#cbd700
@@ -34,10 +35,11 @@ hi Operator   ctermfg=4                           guifg=#6287a7
 "highlight Function  ctermfg=6                            guifg=#00a0a0
 hi cString    ctermfg=9                           guifg=#e73729
 hi Number     ctermfg=6                           guifg=#08a0a0
+hi CommentDoc ctermfg=5                           guifg=#cc45ca
 "highlight Bold                                            guifg=#ffffff guibg=#000000 gui=bold
 "highlight Math        ctermfg=1                           guifg=#dba36f
 
-" Direct color / propertie mappings
+" Direct color / property mappings
 hi Color00    ctermfg=0
 hi Color01    ctermfg=1
 hi Color02    ctermfg=2

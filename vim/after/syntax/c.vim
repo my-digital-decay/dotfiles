@@ -1,9 +1,11 @@
-" Vim syntax file (local modifications)
-" Language: C
-" Maintainer: Keith W. Thompson <my.digital.decay@gmail.com>
-" Last Change:  2013.02.28
+"" Vim syntax file (local modifications)
+"" Language: C
+"" Maintainer: Keith W. Thompson <my.digital.decay@gmail.com>
+"" Last Change:  2013.02.28
 
-syn keyword cHack     contained HACK
+if !exists("b:current_syntax")
+  finish
+endif
 
 syn match cPunctuation  display ";"
 syn match cPunctuation  display ":"
@@ -62,24 +64,33 @@ if exists("c_comment_strings")
   syntax region cCommentString  contained start=+L\=\\\@<!"+ skip=+\\\\\|\\"+ end=+"+ end=+\*/+me=s-1 contains=cSpecial,cCommentSkip
   syntax region cComment2String contained start=+L\=\\\@<!"+ skip=+\\\\\|\\"+ end=+"+ end="$" contains=cSpecial
   syntax region  cCommentL  start="//" skip="\\$" end="$" keepend contains=@cCommentGroup,cComment2String,cCharacter,cNumbersCom,cSpaceError,@Spell
+  syntax region  cCommentLDoc  start="///" skip="\\$" end="$" keepend contains=@cCommentGroup,cComment2String,cCharacter,cNumbersCom,cSpaceError,@Spell
+  syntax region  cCommentLDoc  start="//!" skip="\\$" end="$" keepend contains=@cCommentGroup,cComment2String,cCharacter,cNumbersCom,cSpaceError,@Spell
   if exists("c_no_comment_fold")
     " Use "extend" here to have preprocessor lines not terminate halfway a
     " comment.
     syntax region cComment  matchgroup=cCommentStart start="/\*" end="\*/" contains=@cCommentGroup,cCommentStartError,cCommentString,cCharacter,cNumbersCom,cSpaceError,@Spell extend
+    syntax region cCommentDoc  matchgroup=cCommentDocStart start="/\*\*" end="\*/" contains=@cCommentGroup,cCommentStartError,cCommentString,cCharacter,cNumbersCom,cSpaceError,@Spell extend
+    syntax region cCommentDoc  matchgroup=cCommentDocStart start="/\*!" end="\*/" contains=@cCommentGroup,cCommentStartError,cCommentString,cCharacter,cNumbersCom,cSpaceError,@Spell extend
   else
     syntax region cComment  matchgroup=cCommentStart start="/\*" end="\*/" contains=@cCommentGroup,cCommentStartError,cCommentString,cCharacter,cNumbersCom,cSpaceError,@Spell fold extend
+    syntax region cCommentDoc  matchgroup=cCommentDocStart start="/\*\*" end="\*/" contains=@cCommentGroup,cCommentStartError,cCommentString,cCharacter,cNumbersCom,cSpaceError,@Spell fold extend
+    syntax region cCommentDoc  matchgroup=cCommentDocStart start="/\*!" end="\*/" contains=@cCommentGroup,cCommentStartError,cCommentString,cCharacter,cNumbersCom,cSpaceError,@Spell fold extend
   endif
 else
   syn region  cCommentL start="//" skip="\\$" end="$" keepend contains=@cCommentGroup,cSpaceError,@Spell
+  syn region  cCommentLDoc start="///" skip="\\$" end="$" keepend contains=@cCommentGroup,cSpaceError,@Spell
+  syn region  cCommentLDoc start="//!" skip="\\$" end="$" keepend contains=@cCommentGroup,cSpaceError,@Spell
   if exists("c_no_comment_fold")
     syn region  cComment  matchgroup=cCommentStart start="/\*" end="\*/" contains=@cCommentGroup,cCommentStartError,cSpaceError,@Spell extend
+    syn region  cCommentDoc  matchgroup=cCommentDocStart start="/\*\*" end="\*/" contains=@cCommentGroup,cCommentStartError,cSpaceError,@Spell extend
+    syn region  cCommentDoc  matchgroup=cCommentDocStart start="/\*!" end="\*/" contains=@cCommentGroup,cCommentStartError,cSpaceError,@Spell extend
   else
     syn region  cComment  matchgroup=cCommentStart start="/\*" end="\*/" contains=@cCommentGroup,cCommentStartError,cSpaceError,@Spell fold extend
+    syn region  cCommentDoc  matchgroup=cCommentDocStart start="/\*\*" end="\*/" contains=@cCommentGroup,cCommentStartError,cSpaceError,@Spell fold extend
+    syn region  cCommentDoc  matchgroup=cCommentDocStart start="/\*!" end="\*/" contains=@cCommentGroup,cCommentStartError,cSpaceError,@Spell fold extend
   endif
 endif
-" keep a // comment separately, it terminates a preproc. conditional
-syntax match  cCommentError display "\*/"
-syntax match  cCommentStartError display "/\*"me=e-1 contained
 
 " Indigo types
 syn keyword cIndigoType   IVOID IBOOL ICHAR IUCHAR IINT IUINT ISHORT IUSHORT ILONG IULONG IFLOAT IDOUBLE
@@ -94,7 +105,6 @@ syn keyword cIndigoConst  IFALSE ITRUE INULL IEOF ON OFF
 "syn match cCustomClass  "\w\+\s::" contains=cCustomScope
 
 " Custom highlighting
-hi def link cHack         Todo
 hi def link cIndigoType   Type
 hi def link cIndigoConst  Constant
 hi def link cPunctuation  Operator
@@ -107,4 +117,7 @@ hi def link cPunctuation  Operator
 "hi def link cCustomScope Operator
 "hi def link cCustomClass Function
 
+hi def link cCommentLDoc      CommentDoc
+hi def link cCommentDoc       CommentDoc
+hi def link cCommentDocStart  CommentDoc
 

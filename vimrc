@@ -89,7 +89,7 @@ if has("autocmd")
   augroup END
 
   " set custom settings based on filetype
-  autocmd FileType c,cpp,glsl setlocal softtabstop=4|setlocal expandtab|setlocal list|setlocal number
+  autocmd FileType c,cpp,glsl,java setlocal softtabstop=4|setlocal expandtab|setlocal list|setlocal number
   autocmd FileType ruby,vim,lua setlocal tabstop=2|setlocal shiftwidth=2|setlocal softtabstop=2|
         \ setlocal expandtab|setlocal list|setlocal number
 
