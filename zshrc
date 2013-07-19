@@ -39,14 +39,30 @@ bindkey ' ' magic-space
 # Custom prompt (cygwin style)
 case ${TERM} in
 	xterm*|rxvt*|gnome*|screen*|cygwin)
-		PROMPT="
-%{$fg[green]%}%m%{$reset_color%} %{$fg[cyan]%}%~ %{$reset_color%}
-%(!.#.$) "
+		PROMPT=$'\n'"%{$fg[green]%}%m%{$reset_color%} %{$fg[cyan]%}%~ %{$reset_color%}"$'\n'"%(!.#.$) "
 		;;
 	*)
-		PROMPT="
-%m %~
-%(!.#.$) "
+		PROMPT=$'\n'"%m %~"$'\n'"%(!.#.$) "
 		;;
 esac
+
+# VI keybindings w/ mode display 
+setopt vi
+
+# clear mode after new line
+function accept-line {
+	POSTDISPLAY=""
+	builtin zle .accept-line
+}
+zle -N accept-line
+
+# display mode when mode changed
+function zle-keymap-select {
+	if [[ "$KEYMAP" == vicmd ]] ; then
+		POSTDISPLAY=$'\n'"-- NORMAL --"
+	else
+		POSTDISPLAY=$'\n'"-- INSERT --"
+	fi
+}
+zle -N zle-keymap-select
 

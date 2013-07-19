@@ -27,14 +27,10 @@ GIT_PS1_SUFFIX="]"
 case ${TERM} in
 	xterm*|rxvt*|gnome*|screen*|cygwin)
 		GIT_PS1_SHOWCOLORHINTS=yes
-		PROMPT='
-%{$fg[green]%}%n@%m%{$reset_color%} %{$fg[cyan]%}%~%{$reset_color%} $(__git_ps1)
-%(!.#.$) '
+		PROMPT=$'\n''%{$fg[green]%}%n@%m%{$reset_color%} %{$fg[cyan]%}%~%{$reset_color%} $(__git_ps1)'$'\n''%(!.#.$) '
 		;;
 	*)
-		PROMPT="
-%n@%m %~ $(__git_ps1)
-%(!.#.$) "
+		PROMPT=$'\n'"%n@%m %~ $(__git_ps1)"i$'\n'"%(!.#.$) "
 		;;
 esac
 
