@@ -5,6 +5,7 @@
 	email = jdoe@email.xxx
 [core]
 	excludesfile = /Users/keith/.gitignore
+	pager = less -x1,5
 [push]
 	default = upstream
 [diff]
