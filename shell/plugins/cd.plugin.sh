@@ -41,7 +41,9 @@ cd_func ()
     fi
 
     # '~' has to be substituted by ${HOME}
-    [[ ${the_new_dir:0:1} == '~' ]] && the_new_dir="${HOME}${the_new_dir:1}"
+    [[ ${the_new_dir:2} == '~' ]] && the_new_dir="${HOME}"
+    [[ ${the_new_dir:2} == '~ ' ]] && the_new_dir="${HOME}"
+    [[ ${the_new_dir:2} == '~/' ]] && the_new_dir="${HOME}${the_new_dir:1}"
 
     # Now change to the new dir and add to the top of the stack
     pushd "${the_new_dir}" > /dev/null
