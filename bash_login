@@ -3,20 +3,20 @@
 
 #echo dotfiles/bash_login
 
-# source the local sh_func if it exists
-if [ -e "${HOME}/dotfiles/shell/login" ] ; then
-  source "${HOME}/dotfiles/shell/login"
-fi
-
 # platform specific settings
 case $UNAME in
 Darwin)
 	# add bash completion from brew
-	if [ -n `which brew` ] [ -f `brew --prefix`/etc/bash_completion ] ; then
+	if [[ -n `which brew` ]] && [[ -f `brew --prefix`/etc/bash_completion ]] ; then
 		source `brew --prefix`/etc/bash_completion
 	fi
 	;;
 *)
 	;;
 esac
+
+# source the local sh_func if it exists
+if [ -e "${HOME}/dotfiles/shell/login" ] ; then
+  source "${HOME}/dotfiles/shell/login"
+fi
 
