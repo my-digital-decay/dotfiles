@@ -11,7 +11,7 @@ cd_func ()
   local x2 the_new_dir adir index
   local -i cnt
 
-  if [[ $1 ==  "--" ]]; then
+  if [[ $1 =  "--" ]]; then
     dirs -v
     return 0
   fi
@@ -30,7 +30,7 @@ cd_func ()
     the_new_dir=$1
     [[ -z $1 ]] && the_new_dir=$HOME
 
-    if [[ ${the_new_dir:0:1} == '-' ]]; then
+    if [[ ${the_new_dir:0:1} = '-' ]]; then
       #
       # Extract dir N from dirs
       index=${the_new_dir:1}
@@ -41,9 +41,9 @@ cd_func ()
     fi
 
     # '~' has to be substituted by ${HOME}
-    [[ ${the_new_dir:2} == '~' ]] && the_new_dir="${HOME}"
-    [[ ${the_new_dir:2} == '~ ' ]] && the_new_dir="${HOME}"
-    [[ ${the_new_dir:2} == '~/' ]] && the_new_dir="${HOME}${the_new_dir:1}"
+    [[ ${the_new_dir:0:2} = '~' ]] && the_new_dir="${HOME}"
+    [[ ${the_new_dir:0:2} = '~ ' ]] && the_new_dir="${HOME}"
+    [[ ${the_new_dir:0:2} = '~/' ]] && the_new_dir="${HOME}${the_new_dir:1}"
 
     # Now change to the new dir and add to the top of the stack
     pushd "${the_new_dir}" > /dev/null
@@ -57,8 +57,8 @@ cd_func ()
     for ((cnt=1; cnt <= 10; cnt++)); do
       x2=$(dirs +${cnt} 2>/dev/null)
       [[ $? -ne 0 ]] && return 0
-      [[ ${x2:0:1} == '~' ]] && x2="${HOME}${x2:1}"
-      if [[ "${x2}" == "${the_new_dir}" ]]; then
+      [[ ${x2:0:1} = '~' ]] && x2="${HOME}${x2:1}"
+      if [[ "${x2}" = "${the_new_dir}" ]]; then
         popd -n +$cnt 2>/dev/null 1>/dev/null
         cnt=cnt-1
       fi
