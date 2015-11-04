@@ -50,19 +50,19 @@ cd_func ()
     [[ $? -ne 0 ]] && return 1
     the_new_dir=$(pwd)
 
-    # Trim down everything beyond 11th entry
-    popd -n +$depth 2>/dev/null 1>/dev/null
-
     # Remove any other occurence of this dir, skipping the top of the stack
-    for ((cnt=1; cnt <= 10; cnt++)); do
+    for ((cnt=1; cnt <= $depth-1; cnt++)); do
       x2=$(dirs +${cnt} 2>/dev/null)
       [[ $? -ne 0 ]] && return 0
       [[ ${x2:0:1} = '~' ]] && x2="${HOME}${x2:1}"
       if [[ "${x2}" = "${the_new_dir}" ]]; then
-        popd -n +$cnt 2>/dev/null 1>/dev/null
+        popd +$cnt -n 2>/dev/null 1>/dev/null
         cnt=cnt-1
       fi
     done
+
+    # Trim down everything beyond Nth entry
+    popd +$depth -n 2>/dev/null 1>/dev/null
   fi
   return 0
 }
