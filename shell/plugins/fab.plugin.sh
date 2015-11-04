@@ -9,7 +9,4 @@ function _fab_complete() {
         return 1
     fi
 }
-if [ -f /usr/local/etc/bash_completion ] && ! shopt -oq posix; then
-    . /usr/local/etc/bash_completion
-    complete -o nospace -F _fab_complete fab
-fi
+complete -o nospace -F _fab_complete fab
