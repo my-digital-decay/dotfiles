@@ -51,3 +51,5 @@ elif type compctl &>/dev/null; then
   compctl -K _npm_completion npm
 fi
 ###-end-npm-completion-###
+
+PATH=$PATH:$HOME/.npm-packages/bin
