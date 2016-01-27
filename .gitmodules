@@ -31,3 +31,6 @@
 [submodule "vim/bundle/csv_vim"]
 	path = vim/bundle/csv_vim
 	url = https://github.com/chrisbra/csv.vim.git
+[submodule "vim/bundle/nerdcommenter"]
+	path = vim/bundle/nerdcommenter
+	url = git@github.com:scrooloose/nerdcommenter.git
