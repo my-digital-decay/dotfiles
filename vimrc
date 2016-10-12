@@ -1,13 +1,5 @@
-" An example for a vimrc file.
-"
-" Maintainer: Bram Moolenaar <Bram@vim.org>
-" Last change:  2002 Sep 19
-"
-" To use it, copy it to
-"     for Unix and OS/2:  ~/.vimrc
-"       for Amiga:  s:.vimrc
-"  for MS-DOS and Win32:  $VIM\_vimrc
-"     for OpenVMS:  sys$login:.vimrc
+" .vimrc
+" Author: keith w. thompson
 
 " When started as "evim", evim.vim will already have done these settings.
 if v:progname =~? "evim"
@@ -27,20 +19,37 @@ colorscheme nnul
 " This must be first, because it changes other options as a side effect.
 set nocompatible
 
+" trigger sensible listchars
+set listchars=eol:$
+
 " pathogen plugin management
 execute pathogen#infect()
 
-" allow backspacing over everything in insert mode
-set backspace=indent,eol,start
+" set some directory locations
+" note: these directories must exist
+if isdirectory($HOME)
+  let s:local = $HOME . '/.local'
+  if has('win32')
+    let s:local = $HOME . '/_local'
+  end
+
+  let &directory = expand(s:local) . '/share/vim/swap//,' . &directory
+  let &undodir = expand(s:local) . '/share/vim/undo//,' . &undodir
+  let &backupdir = expand(s:local) . '/share/vim/backup//,' . &backupdir
+end
 
 " set some global default settings
-"set listchars=tab:>-,trail:~
 set nolist
 set noexpandtab
 set tabstop=4
 set shiftwidth=4
 set fileformats+=unix
 set history=100
+set backup
+
+if has("mouse")
+  set mouse=a
+endif
 
 " Don't use Ex mode, use Q for formatting
 map Q gq
@@ -49,29 +58,18 @@ map Q gq
 vmap <Tab> >gv
 vmap <S-Tab> <gv
 
-if has("vms")
-  set nobackup    " do not keep a backup file, use versions instead
-else
-  set backup    " keep a backup file
-endif
-
-if has("mouse")
-  set mouse=a
-endif
-
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
 if &t_Co > 2 || has("gui_running")
-  syntax on
   set hlsearch
+
+  " Press Space to turn off highlighting and clear any message already
+  " displayed.
+  :nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
 endif
 
 " Only do this part when compiled with support for autocommands.
 if has("autocmd")
-
-  " Enable file type detection.
-  " Also load indent files, to automatically do language-dependent indenting.
-  filetype plugin indent on
 
   " Put these in an autocmd group, so that we can delete them easily.
   augroup vimrcEx
@@ -92,8 +90,11 @@ if has("autocmd")
 
   " set custom settings based on filetype
   autocmd FileType c,cpp,glsl setlocal softtabstop=4|setlocal expandtab|setlocal list|setlocal number
-  autocmd FileType ruby,vim setlocal tabstop=2|setlocal shiftwidth=2|setlocal softtabstop=2|
+  autocmd FileType ruby,vim,lua setlocal tabstop=2|setlocal shiftwidth=2|setlocal softtabstop=2|
         \ setlocal expandtab|setlocal list|setlocal number
 
 endif " has("autocmd")
+
+" Disable directory slash in NERDTree
+hi def link NERDTreeDirSlash Ignore
 

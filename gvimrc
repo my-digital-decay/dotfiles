@@ -1,4 +1,5 @@
 " .gvimrc
+" Author: keith w. thompson
 
 " Turns on the tab bar always
 " set showtabline=2
@@ -13,6 +14,6 @@ set lines=68
 set guifont=MonacoNewPowerline:h12
 set noantialias
 
-" Sets the percent transparency
-"set transparency=0
+" Set visual bell (disables audible bell)
+set vb
 

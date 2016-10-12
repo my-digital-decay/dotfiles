@@ -1,4 +1,4 @@
-" Vim syntax file for tasks / todo lists 
+" Vim syntax file for tasks / todo lists
 " Language:     TASK
 " Author:       Keith W. Thompson <my.digital.decay@gmail.com>
 " Date:         2013.02.28
@@ -9,7 +9,7 @@
 "   '-' - discarded / unfinished task
 "   '!' - urgent item
 "   '^' - high priority item
-"   ' ' - normal todo item 
+"   ' ' - normal todo item
 "   '_' - low priority item
 
 " For version 5.x: Clear all syntax items
@@ -31,7 +31,7 @@ syn match tBoxDiscard   display "\[-\]"
 syn match tTaskUrgent   display "\[\!\].*$"
 syn match tTaskHigh     display "\[\^\].*$"
 "syn match  tTaskNormal   display "\[ \].*$"
-"syn match  tTaskLow    display "\[_\].*$"
+syn match  tTaskLow    display "\[_\].*$"
 syn match tTaskComplete display "\[x\].*$"
 syn match tTaskDiscard  display "\[-\].*$"
 
@@ -40,15 +40,15 @@ syn region  tDate       start='<' end='>'
 " highlights
 "hi def link  tBoxUrgent    Error
 "hi def link  tBoxHigh    Todo
-hi def link tBoxNormal  Normal
-hi def link tBoxLow     String
+hi def link tBoxNormal    Bold
+"hi def link tBoxLow       LineNr
 "hi def link  tBoxComplete  Comment
 "hi def link  tBoxDiscard   Comment
 
 hi def link tTaskUrgent   Error
-hi def link tTaskHigh     Todo
+hi def link tTaskHigh     Statement
 "hi def link  tTaskNormal   Normal
-"hi def link tTaskLow   String
+hi def link tTaskLow      LineNr
 hi def link tTaskComplete Comment
 hi def link tTaskDiscard  Comment
 

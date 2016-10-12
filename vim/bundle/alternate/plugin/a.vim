@@ -71,10 +71,10 @@ endfunction
 
 " Add all the default extensions
 " Mappings for C and C++
-call <SID>AddAlternateExtensionMapping('h',"c,cpp,cxx,cc,CC")
-call <SID>AddAlternateExtensionMapping('H',"C,CPP,CXX,CC")
-call <SID>AddAlternateExtensionMapping('hpp',"cpp,c")
-call <SID>AddAlternateExtensionMapping('HPP',"CPP,C")
+call <SID>AddAlternateExtensionMapping('h',"inl,c,cpp,cxx,cc,CC")
+call <SID>AddAlternateExtensionMapping('H',"INL,C,CPP,CXX,CC")
+call <SID>AddAlternateExtensionMapping('hpp',"inl,cpp,c")
+call <SID>AddAlternateExtensionMapping('HPP',"INL,CPP,C")
 call <SID>AddAlternateExtensionMapping('c',"h")
 call <SID>AddAlternateExtensionMapping('C',"H")
 call <SID>AddAlternateExtensionMapping('cpp',"h,hpp")
@@ -83,6 +83,8 @@ call <SID>AddAlternateExtensionMapping('cc',"h")
 call <SID>AddAlternateExtensionMapping('CC',"H,h")
 call <SID>AddAlternateExtensionMapping('cxx',"h")
 call <SID>AddAlternateExtensionMapping('CXX',"H")
+call <SID>AddAlternateExtensionMapping('inl',"cpp,c,hpp,h")
+call <SID>AddAlternateExtensionMapping('INL',"CPP,C,HPP,h")
 " Mappings for PSL7
 call <SID>AddAlternateExtensionMapping('psl',"ph")
 call <SID>AddAlternateExtensionMapping('ph',"psl")
@@ -121,7 +123,7 @@ endif
 " If this variable is true then a.vim will convert the alternate filename to a
 " filename relative to the current working directory.
 " Feature by Nathan Huizinga
-if (!exists('g:alternateRelativeFiles'))                                        
+if (!exists('g:alternateRelativeFiles'))
    " by default a.vim will not convert the filename to one relative to the
    " current working directory
    let g:alternateRelativeFiles = 0
@@ -175,7 +177,7 @@ endfunction
 "            path. The format is:
 "
 "              reg:<sep><pattern><sep><subst><sep><flag><sep>
-"          
+"
 "            <sep> seperator character, we often use one of [/|%#] 
 "            <pattern> is what you are looking for
 "            <subst> is the output pattern
@@ -462,7 +464,7 @@ function! AlternateFile(splitWindow, ...)
         let bestScore = 0
         let score = 0
         let n = 1
-         
+
         let onefile = <SID>GetNthItemFromList(allfiles, n)
         let bestFile = onefile
         while (onefile != "" && score < 2)
@@ -732,7 +734,7 @@ function! <SID>FindOrCreateBuffer(fileName, doSplit, findSimilar)
      endif
   endif
 
-  if (g:alternateRelativeFiles == 1)                                            
+  if (g:alternateRelativeFiles == 1)
         let FILENAME = fnamemodify(FILENAME, ":p:.")
   endif
 

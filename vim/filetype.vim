@@ -6,5 +6,5 @@ endif
 augroup filetypedetect
   au! BufRead,BufNewFile *.glsl   setfiletype glsl
   au! BufRead,BufNewFile *.task   setfiletype task
-  au! BufRead,BufNewFile *.gmake  setfiletype make
+  au! BufRead,BufNewFile *.gmake,*.make  setfiletype make
 augroup END

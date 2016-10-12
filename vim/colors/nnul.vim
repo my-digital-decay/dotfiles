@@ -21,11 +21,11 @@ hi Statement  ctermfg=3               cterm=bold  guifg=#cbd700               gu
 hi PreProc    ctermfg=10                          guifg=#98ec29
 hi Type       ctermfg=2                           guifg=#5fca01
 hi Special    ctermfg=12                          guifg=#6486f3
-hi Error      ctermbg=9                           guibg=#e73729
+hi Error                  ctermbg=9                             guibg=#e73729
 hi Todo       ctermfg=4   ctermbg=3               guifg=#445dd1 guibg=#cbd700
 hi Directory  ctermfg=4                           guifg=#445dd1
 hi StatusLine ctermfg=7   ctermbg=4   cterm=none  guifg=#b4b4b4 guibg=#445dd1 gui=none
-hi Search     ctermbg=15              cterm=bold                guibg=#eaeaea
+hi Search                 ctermbg=3   cterm=bold                guibg=#cbd700
 hi Title      ctermfg=5               term=bold   guifg=#cc45ca               gui=bold
 hi LineNr     ctermfg=7               cterm=none  guifg=#b4b4b4               gui=none
 hi Operator   ctermfg=4                           guifg=#6287a7
