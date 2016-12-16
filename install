@@ -87,7 +87,7 @@ function link_file {
 		printf "overwrite existing file? [y/n] "
 		local answer
 		read answer
-		([ "$answer" == "y" ] || [ "$answer" == "Y" ]) && write=true
+		([ "$answer" = "y" ] || [ "$answer" = "Y" ]) && write=true
 		printf "\n"
 	else
 		write=true
@@ -108,7 +108,7 @@ function copy_file {
 		printf "overwrite existing file? [y/n] "
 		local answer
 		read answer
-		([ "$answer" == "y" ] || [ "$answer" == "Y" ]) && write=true
+		([ "$answer" = "y" ] || [ "$answer" = "Y" ]) && write=true
 		printf "\n"
 	else
 		write=true
@@ -123,7 +123,7 @@ function copy_file {
 }
 
 # bash shell files
-if [ "$shell" == "bash" ] || [ "$shell" == "all" ] ; then
+if [ "$shell" = "bash" ] || [ "$shell" = "all" ] ; then
 	[ -n "$verbose" ] && printf "installing files for shell: bash\n"
 	link_file "bash_profile"
 	copy_file "bashrc"
@@ -131,7 +131,7 @@ if [ "$shell" == "bash" ] || [ "$shell" == "all" ] ; then
 fi
 
 # z shell files
-if [ "$shell" == "zsh" ] || [ "$shell" == "all" ] ; then
+if [ "$shell" = "zsh" ] || [ "$shell" = "all" ] ; then
 	[ -n "$verbose" ] && printf "installing files for shell: zsh\n"
 	link_file "zprofile"
 	copy_file "zshrc"
