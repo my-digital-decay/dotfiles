@@ -11,8 +11,7 @@ colorscheme nnul
 
 " gui only settings (these are recomended to be set here instead of .gvimrc)
 "if has("gui_running")
-  " powerline
-  let g:Powerline_symbols = 'fancy'
+"  let g:Powerline_symbols = 'fancy'
 "endif
 
 " Use Vim settings, rather then Vi settings (much better!).

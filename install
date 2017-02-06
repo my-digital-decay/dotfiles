@@ -138,10 +138,7 @@ if [ "$shell" = "zsh" ] || [ "$shell" = "all" ] ; then
 	copy_file "zlogin"
 fi
 
-# always link the .shell folder
-#link_file( "shell" )
-
-# create .local shell plugins folder
+# create .local shell plugins directory
 [ ! -d "${HOME}/.local" ] && mkdir "${HOME}/.local"
 [ ! -d "${HOME}/.local/shell" ] && mkdir "${HOME}/.local/shell"
 [ ! -d "${HOME}/.local/shell/plugins" ] && mkdir "${HOME}/.local/shell/plugins"
@@ -154,11 +151,15 @@ if [ -n "$os" ] ; then
 fi
 
 # vim files
-# TODO: make these skel file copys that source the dotfiles
 if [ -n "$vimrc" ] ; then
-	link_file "vimrc"
+	copy_file "vimrc"
+	copy_file "gvimrc"
 	link_file "vim"
-	link_file "gvimrc"
+
+	# create .local vim directories
+	[ ! -d "${HOME}/.local/share/vim/backup" ] && mkdir -p "${HOME}/.local/share/vim/backup"
+	[ ! -d "${HOME}/.local/share/vim/swap" ] && mkdir -p "${HOME}/.local/share/vim/swap"
+	[ ! -d "${HOME}/.local/share/vim/undo" ] && mkdir -p "${HOME}/.local/share/vim/undo"
 fi
 
 # always link these files
