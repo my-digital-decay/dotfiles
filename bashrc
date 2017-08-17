@@ -9,10 +9,15 @@ if [ -e "$HOME/dotfiles/shell/shrc" ] ; then
 fi
 
 # Don't put duplicate lines in the history.
-export HISTCONTROL=ignoredups
+export HISTCONTROL=ignoredups:ignorespace
+export HISTSIZE=5000
+export HISTFILESIZE=25000
+
+# Append to the history file.
+shopt -s histappend
 
 # Ignore some controlling instructions
-export HISTIGNORE=$'[ \t]*:&:[fb]g:exit:ls:ls:ll'
+export HISTIGNORE=$'[ \t]*:&:[fb]g:exit:ls:ls:ll:h:history'
 
 # default prompt
 case ${TERM} in
