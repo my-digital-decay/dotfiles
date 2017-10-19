@@ -19,9 +19,9 @@
 [mergetool "kdiff3"]
 	path = /usr/local/bin/kdiff3
 [alias]
-	ls = log --pretty=format:"%C(yellow)%h%C(red)%d\\ %C(reset)%s\\ %C(blue)[%cn]" --decorate
-	ll = log --pretty=format:"%C(yellow)%h%C(red)%d\\ %C(reset)%s\\ %C(blue)[%cn]" --decorate --numstat
-	tree = log --graph --oneline --pretty=format:"%C(yellow)%h%C(red)%d\\ %C(reset)%s\\ %C(blue)[%cn]" --decorate
+	ls = log --pretty=format:"%C(yellow)%h%C(red)%d\\ %C(reset)%s\\ %C(green)[%an]" --decorate
+	ll = log --pretty=format:"%C(yellow)%h%C(red)%d\\ %C(reset)%s\\ %C(green)[%an]" --decorate --numstat
+	tree = log --graph --oneline --pretty=format:"%C(yellow)%h%C(red)%d\\ %C(reset)%s\\ %C(green)[%an]" --decorate
 	grep = grep -Iin
 	br = branch
 	co = checkout
