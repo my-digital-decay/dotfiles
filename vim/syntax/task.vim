@@ -35,6 +35,8 @@ syn match  tTaskLow    display "\[_\].*$"
 syn match tTaskComplete display "\[x\].*$"
 syn match tTaskDiscard  display "\[-\].*$"
 
+syn match tComment      display "#.*$"
+
 syn region  tDate       start='<' end='>'
 
 " highlights
@@ -51,6 +53,7 @@ hi def link tTaskHigh     Statement
 hi def link tTaskLow      LineNr
 hi def link tTaskComplete Comment
 hi def link tTaskDiscard  Comment
+hi def link tComment  CommentDoc
 
 hi def link tDate         Identifier
 
