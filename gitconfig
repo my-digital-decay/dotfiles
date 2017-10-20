@@ -4,10 +4,10 @@
 	name = John Doe
 	email = jdoe@email.xxx
 [core]
-	excludesfile = /Users/keith/.gitignore
+	excludesfile = /home/keith/.gitignore
 	pager = less -x1,5
 [push]
-	default = upstream
+	default = simple
 [diff]
 	tool = kdiff3
 [difftool "kdiff3"]
@@ -19,10 +19,11 @@
 [mergetool "kdiff3"]
 	path = /usr/local/bin/kdiff3
 [alias]
-	ls = log --pretty=format:"%C(yellow)%h%C(red)%d\\ %C(reset)%s\\ %C(green)[%an]" --decorate
-	ll = log --pretty=format:"%C(yellow)%h%C(red)%d\\ %C(reset)%s\\ %C(green)[%an]" --decorate --numstat
-	tree = log --graph --oneline --pretty=format:"%C(yellow)%h%C(red)%d\\ %C(reset)%s\\ %C(green)[%an]" --decorate
-	grep = grep -Iin
+	ls = log --pretty=format:"%C(yellow)%h%C(cyan)%d\\ %C(reset)%s\\ %C(green)[%an]" --decorate
+	ll = log --pretty=format:"%C(yellow)%h%C(cyan)%d\\ %C(reset)%s\\ %C(green)[%an]" --decorate --numstat
+	lg = log --pretty=format:"%C(blue)%ad%C(cyan)%d\\ %C(reset)%s\\ %C(green)[%an]" --decorate --date=short
+	tree = log --graph --oneline --pretty=format:"%C(yellow)%h%C(cyan)%d\\ %C(reset)%s\\ %C(green)[%an]" --decorate
+	grep = grep -In
 	br = branch
 	co = checkout
 	st = status -s
@@ -30,3 +31,6 @@
 	stl = stash list
 	sts = stash save
 	stp = stash pop
+	fixup = !sh -c 'git commit --fixup=$1' -
+	squash = !sh -c 'git commit --squash=$1' -
+	ri = rebase --interactive --autosquash
