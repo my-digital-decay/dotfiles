@@ -128,6 +128,7 @@ if [ "$shell" = "bash" ] || [ "$shell" = "all" ] ; then
 	link_file "bash_profile"
 	copy_file "bashrc"
 	copy_file "bash_login"
+	copy_file "inputrc"
 fi
 
 # z shell files
