@@ -34,3 +34,5 @@
 	fixup = !sh -c 'git commit --fixup=$1' -
 	squash = !sh -c 'git commit --squash=$1' -
 	ri = rebase --interactive --autosquash
+	hide = update-index --assume-unchanged
+	unhide = update-index --no-assume-unchanged
