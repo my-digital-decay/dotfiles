@@ -2,31 +2,31 @@
 
 # Aliases
 alias g='git'
-compdef g=git
+#compdef g=git
 alias ga='git add'
-compdef _git ga=git-add
+#compdef _git ga=git-add
 alias gb='git branch'
-compdef _git gb=git-branch
+#compdef _git gb=git-branch
 alias gc='git commit'
-compdef _git gc=git-commit
+#compdef _git gc=git-commit
 alias gda='git difftoolall'
-compdef _git gda=git-difftool
+#compdef _git gda=git-difftool
 alias gdt='git difftool'
-compdef _git gdt=git-difftool
+#compdef _git gdt=git-difftool
 alias gd='git diff'
 gdv() {
-    git diff -w "$@" | view -
-  }
-compdef _git gdv=git-diff
+	git diff -w "$@" | view -
+}
+#compdef _git gdv=git-diff
 
 alias gst='git status'
-compdef _git gst=git-status
+#compdef _git gst=git-status
 alias gl='git pull'
-compdef _git gl=git-pull
+#compdef _git gl=git-pull
 alias gup='git pull --rebase'
-compdef _git gup=git-fetch
+#compdef _git gup=git-fetch
 alias gp='git push'
-compdef _git gp=git-push
+#compdef _git gp=git-push
 
 #alias gca='git commit -a'
 #compdef _git gca=git-commit
