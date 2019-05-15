@@ -2,9 +2,9 @@
 	ui = auto
 [user]
 	name = John Doe
-	email = jdoe@email.xxx
+	email = jdoe@example.com
 [core]
-	excludesfile = /home/keith/.gitignore
+	excludesfile = /home/jdoe/.gitignore
 	pager = less -x1,5
 [push]
 	default = simple
@@ -19,20 +19,26 @@
 [mergetool "kdiff3"]
 	path = /usr/local/bin/kdiff3
 [alias]
-	ls = log --pretty=format:"%C(yellow)%h%C(cyan)%d\\ %C(reset)%s\\ %C(green)[%an]" --decorate
-	ll = log --pretty=format:"%C(yellow)%h%C(cyan)%d\\ %C(reset)%s\\ %C(green)[%an]" --decorate --numstat
+	;ls = log --pretty=format:"%C(yellow)%h%C(cyan)%d\\ %C(reset)%s\\ %C(green)[%an]" --decorate
+	ls = log --oneline
+	;ll = log --pretty=format:"%C(yellow)%h%C(cyan)%d\\ %C(reset)%s\\ %C(green)[%an]" --decorate --numstat
+	ll = log --oneline --numstat
 	lg = log --pretty=format:"%C(blue)%ad%C(cyan)%d\\ %C(reset)%s\\ %C(green)[%an]" --decorate --date=short
-	tree = log --graph --oneline --pretty=format:"%C(yellow)%h%C(cyan)%d\\ %C(reset)%s\\ %C(green)[%an]" --decorate
+	;tree = log --graph --oneline --pretty=format:"%C(yellow)%h%C(cyan)%d\\ %C(reset)%s\\ %C(green)[%an]" --decorate
+	tree = log --graph --oneline
 	grep = grep -In
 	br = branch
 	co = checkout
 	st = status -s
 	cl = clone
-	stl = stash list
-	sts = stash save
-	stp = stash pop
+	;stl = stash list
+	;sts = stash save
+	;stp = stash pop
 	fixup = !sh -c 'git commit --fixup=$1' -
 	squash = !sh -c 'git commit --squash=$1' -
 	ri = rebase --interactive --autosquash
 	hide = update-index --assume-unchanged
 	unhide = update-index --no-assume-unchanged
+	sub = submodule
+	rsub = submodule update --init --recursive
+	retag = !sh -c 'git tag -d $1 && git tag $1' -
