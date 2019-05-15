@@ -40,7 +40,7 @@ export PATH
 [ $ZSH_NAME ] || alias compdef="true"
 
 # increase size of cd history
-CD_DEPTH=50
+#CD_DEPTH=50
 
 # default the editor to vim
 export EDITOR=vim
