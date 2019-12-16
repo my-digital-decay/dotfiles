@@ -37,6 +37,23 @@ if isdirectory($HOME)
   let &backupdir = expand(s:local) . '/share/vim/backup//,' . &backupdir
 end
 
+" defualt CtrlP to buffer mode
+let g:ctrlp_cmd = 'CtrlPBuffer'
+
+" Syntastic settings
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_mode_map = { 'mode' : 'active',
+                             \ 'active_filetypes': [],
+                             \ 'passive_filetypes': ['c', 'cpp'] }
+let g:syntastic_javascript_checkers = ['jshint']
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
 " set some global default settings
 set nolist
 set noexpandtab
@@ -57,7 +74,7 @@ map Q gq
 vmap <Tab> >gv
 vmap <S-Tab> <gv
 
-map <C-n> :NERDTreeToggle<CR>
+filetype indent plugin on
 
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
@@ -90,12 +107,19 @@ if has("autocmd")
   augroup END
 
   " set custom settings based on filetype
-  autocmd FileType c,cpp,glsl,java setlocal softtabstop=4|setlocal expandtab|setlocal list|setlocal number
-  autocmd FileType ruby,vim,lua setlocal tabstop=2|setlocal shiftwidth=2|setlocal softtabstop=2|
-        \ setlocal expandtab|setlocal list|setlocal number
+  autocmd FileType c,cpp,cs,dart,glsl,java,python,javascript setlocal number
+  autocmd FileType dart,ruby,vim,lua setlocal tabstop=2|setlocal shiftwidth=2|setlocal softtabstop=2|setlocal number
 
 endif " has("autocmd")
 
-" Disable directory slash in NERDTree
+"" NERDTree
+"" Disable directory slash in NERDTree
 hi def link NERDTreeDirSlash Ignore
+let NERDTreeIgnore=['\~$', '\.meta$']
+map <C-n> :NERDTreeToggle<CR>
 
+"" GitGutter
+hi def link GitGutterAdd Type
+hi def link GitGutterChange Statement
+hi def link GitGutterDelete IncSearch
+hi def link GitGutterChangeDelete Identifier
