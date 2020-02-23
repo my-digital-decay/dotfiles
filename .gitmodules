@@ -61,3 +61,6 @@
 [submodule "vim/bundle/fzf"]
 	path = vim/bundle/fzf
 	url = https://github.com/junegunn/fzf.vim.git
+[submodule "vim/bundle/rust.vim"]
+	path = vim/bundle/rust.vim
+	url = https://github.com/rust-lang/rust.vim.git
