@@ -15,24 +15,22 @@ for plugin in "${login_plugins[@]}"; do
     source $DOTSHELL/plugins/$plugin.plugin.sh
     #echo $DOTSHELL/plugins/$plugin.plugin.sh
   fi
-  # local plugins
-  if [ -f $DOTLOCAL_SHELL/plugins/$plugin.plugin.sh ]; then
-    source $DOTLOCAL_SHELL/plugins/$plugin.plugin.sh
-    #echo $DOTLOCAL_SHELL/plugins/$plugin.plugin.sh
-  fi
-done
 
-# Load OS specific plugins
-for plugin in "${login_plugins[@]}"; do
   # shared os plugins
   if [ -f $DOTSHELL/plugins/$plugin.${PLUGIN_OS}.plugin.sh ]; then
     source $DOTSHELL/plugins/$plugin.${PLUGIN_OS}.plugin.sh
     #echo $DOTSHELL/plugins/$plugin.${PLUGIN_OS}.plugin.sh
   fi
+
+  # local plugins
+  if [ -f $DOTLOCAL_SHELL/plugins/$plugin.plugin.sh ]; then
+    source $DOTLOCAL_SHELL/plugins/$plugin.plugin.sh
+    #echo $DOTLOCAL_SHELL/plugins/$plugin.plugin.sh
+  fi
+
   # local os plugins (redundant)
   if [ -f $DOTLOCAL_SHELL/plugins/$plugin.${PLUGIN_OS}.plugin.sh ]; then
     source $DOTLOCAL_SHELL/plugins/$plugin.${PLUGIN_OS}.plugin.sh
     #echo $DOTLOCAL_SHELL/plugins/$plugin.${PLUGIN_OS}.plugin.sh
   fi
 done
-
