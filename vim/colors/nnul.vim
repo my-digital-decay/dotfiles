@@ -30,6 +30,7 @@ hi Search                 ctermbg=3   cterm=bold                guibg=#cbd700
 hi Title      ctermfg=5               term=bold   guifg=#cc45ca               gui=bold
 hi LineNr     ctermfg=7               cterm=none  guifg=#b4b4b4               gui=none
 hi Operator   ctermfg=4                           guifg=#6287a7
+hi SignColumn ctermfg=7   ctermbg=0   cterm=none  guifg=#b4b4b4 guibg=#0e0e0e gui=none
 
 " {kwt:2013.02.13 - Custom color additions used by custom syntax files}
 "highlight Function  ctermfg=6                            guifg=#00a0a0
