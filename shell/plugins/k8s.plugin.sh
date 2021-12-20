@@ -13901,3 +13901,5 @@ else
 fi
 
 # ex: ts=4 sw=4 et filetype=sh
+
+export PATH="${PATH}:${HOME}/.krew/bin"
