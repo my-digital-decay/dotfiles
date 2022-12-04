@@ -55,9 +55,6 @@
 [submodule "vim/bundle/vim-btask"]
 	path = vim/bundle/vim-btask
 	url = https://github.com/my-digital-decay/vim-btask.git
-[submodule "vim/bundle/omnisharp-vim"]
-	path = vim/bundle/omnisharp-vim
-	url = git://github.com/OmniSharp/omnisharp-vim
 [submodule "vim/bundle/fzf"]
 	path = vim/bundle/fzf
 	url = https://github.com/junegunn/fzf.vim.git
