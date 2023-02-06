@@ -3,3 +3,5 @@
 "\e[B": history-search-forward
 "\eOA": history-search-backward
 "\eOB": history-search-forward
+
+set bell-style none
